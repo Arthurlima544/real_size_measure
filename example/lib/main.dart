@@ -24,9 +24,11 @@ class MainApp extends StatelessWidget {
               measureWidget.addNewPoint(
                 CustomPoint(
                   position: CustomPosition(
-                      top: MediaQuery.of(context).size.height / 2,
-                      left: MediaQuery.of(context).size.width / 2,
-                      offset: const Offset(100, 100)),
+                    top: MediaQuery.of(context).size.height / 2,
+                    left: MediaQuery.of(context).size.width / 2,
+                    offset: Offset(MediaQuery.of(context).size.width / 2,
+                        MediaQuery.of(context).size.height / 2),
+                  ),
                 ),
               );
             },

@@ -33,6 +33,7 @@ class _PointWidgetState extends State<PointWidget> {
           left: pointPosition.left,
           child: GestureDetector(
             onPanUpdate: (details) {
+              /*  print("Global Position : ${details.globalPosition}"); */
               BlocProvider.of<RealSizeMeasureBloc>(context)
                   .add(ChangePointPosition(
                 id: widget.point.id,
