@@ -10,7 +10,10 @@ void main(List<String> args) {
 }
 
 class MainApp extends StatelessWidget {
-  final Measure measureWidget = Measure();
+  final Measure measureWidget = Measure(
+    limitOfPointsCreated: 2,
+  );
+
   MainApp({super.key});
 
   @override

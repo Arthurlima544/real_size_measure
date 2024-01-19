@@ -5,8 +5,12 @@ import 'package:real_size_measure/helper/point.dart';
 import 'package:real_size_measure/real_size_measure.dart';
 
 class Measure extends StatelessWidget {
-  final RealSizeMeasureBloc bloc = RealSizeMeasureBloc();
-  Measure({super.key});
+  final int limitOfPointsCreated;
+  late RealSizeMeasureBloc bloc;
+
+  Measure({super.key, required this.limitOfPointsCreated}) {
+    bloc = RealSizeMeasureBloc(limitOfPointsCreated: limitOfPointsCreated);
+  }
 
   addNewPoint(CustomPoint point) {
     bloc.add(AddNewPoint(point: CustomPoint(position: point.position)));
