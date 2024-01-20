@@ -67,20 +67,20 @@ class PointsAndStraight extends StatelessWidget {
       ],
     );
   }
+}
 
-  double calculateAngle(Offset point1, Offset point2) {
-    /* print("Angle: ${atan2(point2.dy - point1.dy, point2.dx - point1.dx)}"); */
-    return atan2(point2.dy - point1.dy, point2.dx - point1.dx);
-  }
+double calculateAngle(Offset point1, Offset point2) {
+  /* print("Angle: ${atan2(point2.dy - point1.dy, point2.dx - point1.dx)}"); */
+  return atan2(point2.dy - point1.dy, point2.dx - point1.dx);
+}
 
-  double distanceBetweenPoints(Offset point1, Offset point2) {
-    print('Point1: $point1 Point2: $point2');
-    return sqrt(pow(point2.dy - point1.dy, 2) + pow(point2.dx - point1.dx, 2));
-  }
+double distanceBetweenPoints(Offset point1, Offset point2) {
+  print('Point1: $point1 Point2: $point2');
+  return sqrt(pow(point2.dy - point1.dy, 2) + pow(point2.dx - point1.dx, 2));
+}
 
-  double convertToMilimeters(
-      double distance, double deviceHeight, double deviceWidth) {
-    /* print("distancia $distance altura $deviceHeight largura $deviceWidth"); */
-    return distance * 45 / deviceHeight;
-  }
+double convertToMilimeters(
+    double distance, double deviceHeight, double deviceWidth) {
+  /* print("distancia $distance altura $deviceHeight largura $deviceWidth"); */
+  return distance * 45 / deviceHeight;
 }

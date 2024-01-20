@@ -16,6 +16,10 @@ class Measure extends StatelessWidget {
     bloc.add(AddNewPoint(point: CustomPoint(position: point.position)));
   }
 
+  savePoints(Offset deviceMediumPoint) {
+    bloc.add(SavePointSession(deviceMediumPoint));
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

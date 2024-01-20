@@ -23,3 +23,8 @@ class ChangePointPosition extends RealSizeMeasureEvent {
   @override
   List<Object> get props => [id ?? 0, position];
 }
+
+class SavePointSession extends RealSizeMeasureEvent {
+  final Offset deviceMediumPoint;
+  const SavePointSession(this.deviceMediumPoint);
+}

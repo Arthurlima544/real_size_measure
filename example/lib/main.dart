@@ -11,7 +11,7 @@ void main(List<String> args) {
 
 class MainApp extends StatelessWidget {
   final Measure measureWidget = Measure(
-    limitOfPointsCreated: 2,
+    limitOfPointsCreated: 8,
   );
 
   MainApp({super.key});
@@ -21,22 +21,36 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          body: measureWidget,
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              measureWidget.addNewPoint(
-                CustomPoint(
-                  position: CustomPosition(
-                    top: MediaQuery.of(context).size.height / 2,
-                    left: MediaQuery.of(context).size.width / 2,
-                    offset: Offset(MediaQuery.of(context).size.width / 2,
-                        MediaQuery.of(context).size.height / 2),
+        body: measureWidget,
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                measureWidget.savePoints(Offset(
+                    MediaQuery.of(context).size.width / 2,
+                    MediaQuery.of(context).size.height / 2));
+              },
+              child: const Icon(Icons.save),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                measureWidget.addNewPoint(
+                  CustomPoint(
+                    position: CustomPosition(
+                      top: MediaQuery.of(context).size.height / 2,
+                      left: MediaQuery.of(context).size.width / 2,
+                      offset: Offset(MediaQuery.of(context).size.width / 2,
+                          MediaQuery.of(context).size.height / 2),
+                    ),
                   ),
-                ),
-              );
-            },
-            child: const Icon(Icons.add),
-          )),
+                );
+              },
+              child: const Icon(Icons.add),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
