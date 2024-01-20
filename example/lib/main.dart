@@ -27,9 +27,12 @@ class MainApp extends StatelessWidget {
           children: [
             FloatingActionButton(
               onPressed: () {
-                measureWidget.savePoints(Offset(
-                    MediaQuery.of(context).size.width / 2,
-                    MediaQuery.of(context).size.height / 2));
+                measureWidget.savePoints(
+                  Offset(
+                    MediaQuery.of(context).size.width,
+                    MediaQuery.of(context).size.height,
+                  ),
+                );
               },
               child: const Icon(Icons.save),
             ),
