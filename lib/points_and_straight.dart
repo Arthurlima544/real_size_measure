@@ -1,10 +1,5 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:real_size_measure/bloc/real_size_measure_bloc.dart';
-import 'package:real_size_measure/helper/custom_position.dart';
 import 'package:real_size_measure/helper/point.dart';
 import 'package:real_size_measure/point_widget.dart';
 
@@ -22,8 +17,6 @@ class PointsAndStraight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final deviceOffset = Offset(MediaQuery.of(context).size.width / 2,
-        MediaQuery.of(context).size.height / 2);
     return Stack(
       children: [
         PointWidget(
@@ -70,17 +63,14 @@ class PointsAndStraight extends StatelessWidget {
 }
 
 double calculateAngle(Offset point1, Offset point2) {
-  /* print("Angle: ${atan2(point2.dy - point1.dy, point2.dx - point1.dx)}"); */
   return atan2(point2.dy - point1.dy, point2.dx - point1.dx);
 }
 
 double distanceBetweenPoints(Offset point1, Offset point2) {
-  print('Point1: $point1 Point2: $point2');
   return sqrt(pow(point2.dy - point1.dy, 2) + pow(point2.dx - point1.dx, 2));
 }
 
 double convertToMilimeters(
     double distance, double deviceHeight, double deviceWidth) {
-  /* print("distancia $distance altura $deviceHeight largura $deviceWidth"); */
   return distance * 45 / deviceHeight;
 }

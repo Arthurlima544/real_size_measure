@@ -18,12 +18,12 @@ class RealSizeMeasureBloc
       : super(const RealSizeMeasureState()) {
     on<AddNewPoint>((event, emit) {
       int? newPointId;
-      /* print("Point add at ${event.point.position}}"); */
+
       if (state.points.length >= limitOfPointsCreated) {
         return;
       } else if (state.points.length % 2 != 0 && state.points.isNotEmpty) {
         newPointId = state.points.length + 1;
-        /* print(" New Couple: ${state.points.last.id}º and $newPointIdº"); */
+
         emit(state.copyWith(points: [
           ...state.points,
           event.point.copyWith(
@@ -91,7 +91,6 @@ class RealSizeMeasureBloc
           ],
         ),
       );
-      print(state.session);
     });
     on<ClearOldSession>((event, emit) {
       emit(state.copyWith(session: [], points: []));
