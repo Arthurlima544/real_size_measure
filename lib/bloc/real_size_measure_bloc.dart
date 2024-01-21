@@ -93,6 +93,9 @@ class RealSizeMeasureBloc
       );
       print(state.session);
     });
+    on<ClearOldSession>((event, emit) {
+      emit(state.copyWith(session: [], points: []));
+    });
   }
 }
 

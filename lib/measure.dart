@@ -20,6 +20,10 @@ class Measure extends StatelessWidget {
     bloc.add(SavePointSession(deviceSize));
   }
 
+  clearOldSession() {
+    bloc.add(ClearOldSession());
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
