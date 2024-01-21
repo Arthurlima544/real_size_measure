@@ -28,3 +28,5 @@ class SavePointSession extends RealSizeMeasureEvent {
   final Offset deviceMediumPoint;
   const SavePointSession(this.deviceMediumPoint);
 }
+
+class ClearOldSession extends RealSizeMeasureEvent {}
