@@ -8,10 +8,13 @@ import 'package:real_size_measure/helper/widgets/bloc/real_size_measure_bloc.dar
 class PointWidget extends StatefulWidget {
   final CustomPoint point;
   final Color color;
+  final Size pointSize;
+
   const PointWidget({
     required this.point,
     super.key,
     required this.color,
+    required this.pointSize,
   });
 
   @override
@@ -39,8 +42,8 @@ class _PointWidgetState extends State<PointWidget> {
               );
             },
             child: Container(
-              height: 20,
-              width: 20,
+              height: widget.pointSize.height,
+              width: widget.pointSize.width,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: widget.color,

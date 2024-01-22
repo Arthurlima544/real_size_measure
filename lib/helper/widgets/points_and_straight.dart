@@ -10,12 +10,16 @@ class PointsAndStraight extends StatelessWidget {
   final CustomPoint point1;
   final CustomPoint point2;
   final Color color;
+  final Size pointSize;
+  final Color distanceColor;
 
   const PointsAndStraight({
     super.key,
     required this.point1,
     required this.point2,
     required this.color,
+    required this.pointSize,
+    required this.distanceColor,
   });
 
   @override
@@ -25,10 +29,12 @@ class PointsAndStraight extends StatelessWidget {
         PointWidget(
           point: point1,
           color: color,
+          pointSize: pointSize,
         ),
         PointWidget(
           point: point2,
           color: color,
+          pointSize: pointSize,
         ),
         Positioned(
           top: point1.pointOffset.dy + 5,
@@ -51,8 +57,8 @@ class PointsAndStraight extends StatelessWidget {
                 ),
                 Text(
                   "${convertToMilimeters(distanceBetweenPoints(point1.pointOffset, point2.pointOffset), MediaQuery.of(context).size.height, MediaQuery.of(context).size.width).toStringAsFixed(1)} mm",
-                  style: const TextStyle(
-                    color: Colors.black,
+                  style: TextStyle(
+                    color: distanceColor,
                     fontSize: 10,
                   ),
                 ),

@@ -6,10 +6,22 @@ import 'package:real_size_measure/helper/widgets/bloc/real_size_measure_bloc.dar
 import 'package:real_size_measure/helper/widgets/real_size_measure_widget.dart';
 
 class Measure extends StatelessWidget {
+  /// Represents the limit of points that can be created.
   final int limitOfPointsCreated;
+
+  /// Represents the size of the points.
+  final Size pointSize;
+
+  /// Represents the color of the line that connects the points.
+  final Color distanceColor;
   late RealSizeMeasureBloc bloc;
 
-  Measure({super.key, required this.limitOfPointsCreated}) {
+  Measure({
+    super.key,
+    required this.limitOfPointsCreated,
+    this.pointSize = const Size(20, 20),
+    this.distanceColor = Colors.black,
+  }) {
     bloc = RealSizeMeasureBloc(limitOfPointsCreated: limitOfPointsCreated);
   }
 
@@ -32,7 +44,10 @@ class Measure extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => bloc,
-      child: const RealSizeMeasureWidget(),
+      child: RealSizeMeasureWidget(
+        pointSize: pointSize,
+        distanceColor: distanceColor,
+      ),
     );
   }
 }
