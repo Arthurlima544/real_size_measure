@@ -1,13 +1,10 @@
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:real_size_measure/helper/custom_position.dart';
-import 'package:real_size_measure/helper/point.dart';
-import 'package:real_size_measure/helper/point_session.dart';
-import 'package:real_size_measure/points_and_straight.dart';
-
+import 'package:real_size_measure/helper/others/constants.dart';
+import 'package:real_size_measure/helper/others/methods.dart';
+import 'package:real_size_measure/helper/classes/point.dart';
+import 'package:real_size_measure/helper/classes/point_session.dart';
 part 'real_size_measure_event.dart';
 part 'real_size_measure_state.dart';
 
@@ -27,10 +24,7 @@ class RealSizeMeasureBloc
         emit(state.copyWith(points: [
           ...state.points,
           event.point.copyWith(
-            couple: state.points.last,
             id: newPointId,
-            distanceBetweenCurrentPointAndCouple:
-                event.point.position.distanceTo(state.points.last.position),
           ),
         ]));
       } else {
@@ -50,10 +44,7 @@ class RealSizeMeasureBloc
               for (final point in state.points)
                 if (point.id == event.id)
                   point.copyWith(
-                    position: event.position,
-                    distanceBetweenCurrentPointAndCouple: point.couple != null
-                        ? point.position.distanceTo(point.couple!.position)
-                        : null,
+                    pointOffset: event.pointOffset,
                   )
                 else
                   point,
@@ -64,14 +55,14 @@ class RealSizeMeasureBloc
     );
     on<SavePointSession>((event, emit) {
       final points = state.points;
-      final pointsPosition = points.map((e) => e.position).toList();
+      final pointsPosition = points.map((e) => e.pointOffset).toList();
       List<double> listDistancesInPixels = [];
       List<double> listDistancesInMilimeters = [];
       List<Color> coupleColors = [];
 
       for (int i = 0; i < pointsPosition.length; i += 2) {
-        final distance = distanceBetweenPoints(
-            pointsPosition[i].offset!, pointsPosition[i + 1].offset!);
+        final distance =
+            distanceBetweenPoints(pointsPosition[i], pointsPosition[i + 1]);
         listDistancesInPixels.add(distance);
         listDistancesInMilimeters.add(convertToMilimeters(
             distance, event.deviceMediumPoint.dy, event.deviceMediumPoint.dx));
@@ -97,14 +88,3 @@ class RealSizeMeasureBloc
     });
   }
 }
-
-final colors = <Color>[
-  Colors.red,
-  Colors.orange,
-  Colors.purple,
-  Colors.yellow,
-  Colors.green,
-  Colors.pink,
-  Colors.blue,
-  Colors.teal,
-];

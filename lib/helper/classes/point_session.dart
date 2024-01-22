@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:real_size_measure/helper/point.dart';
+import 'package:real_size_measure/helper/classes/point.dart';
 
+/// PointSession class to store point session data
 class PointSession extends Equatable {
   final int id;
   final List<CustomPoint> points;

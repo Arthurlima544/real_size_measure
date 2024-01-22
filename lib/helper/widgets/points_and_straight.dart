@@ -1,8 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:real_size_measure/helper/point.dart';
-import 'package:real_size_measure/point_widget.dart';
+import 'package:real_size_measure/helper/others/methods.dart';
+import 'package:real_size_measure/helper/classes/point.dart';
+import 'package:real_size_measure/helper/widgets/point_widget.dart';
 
+/// This widget is used to show the points and the straight between them.
+/// Only when the user has created two points.
 class PointsAndStraight extends StatelessWidget {
   final CustomPoint point1;
   final CustomPoint point2;
@@ -28,13 +31,13 @@ class PointsAndStraight extends StatelessWidget {
           color: color,
         ),
         Positioned(
-          top: point1.position.top + 5,
-          left: point1.position.left + 5,
+          top: point1.pointOffset.dy + 5,
+          left: point1.pointOffset.dx + 5,
           child: Transform(
             transform: Matrix4.rotationZ(
               calculateAngle(
-                point1.position.offset!,
-                point2.position.offset!,
+                point1.pointOffset,
+                point2.pointOffset,
               ),
             ),
             alignment: Alignment.centerLeft,
@@ -43,11 +46,11 @@ class PointsAndStraight extends StatelessWidget {
                 Container(
                   height: 5,
                   width: distanceBetweenPoints(
-                      point1.position.offset!, point2.position.offset!),
+                      point1.pointOffset, point2.pointOffset),
                   color: color,
                 ),
                 Text(
-                  "${convertToMilimeters(distanceBetweenPoints(point1.position.offset!, point2.position.offset!), MediaQuery.of(context).size.height, MediaQuery.of(context).size.width).toStringAsFixed(1)} mm",
+                  "${convertToMilimeters(distanceBetweenPoints(point1.pointOffset, point2.pointOffset), MediaQuery.of(context).size.height, MediaQuery.of(context).size.width).toStringAsFixed(1)} mm",
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 10,
@@ -60,17 +63,4 @@ class PointsAndStraight extends StatelessWidget {
       ],
     );
   }
-}
-
-double calculateAngle(Offset point1, Offset point2) {
-  return atan2(point2.dy - point1.dy, point2.dx - point1.dx);
-}
-
-double distanceBetweenPoints(Offset point1, Offset point2) {
-  return sqrt(pow(point2.dy - point1.dy, 2) + pow(point2.dx - point1.dx, 2));
-}
-
-double convertToMilimeters(
-    double distance, double deviceHeight, double deviceWidth) {
-  return distance * 45 / deviceHeight;
 }
