@@ -8,7 +8,6 @@ void main(List<String> args) {
 
 class MainApp extends StatelessWidget {
   final Measure measureWidget = const Measure(
-    limitOfPointsCreated: 4,
     pointSize: Size(20, 20),
     distanceColor: Colors.blue,
   );

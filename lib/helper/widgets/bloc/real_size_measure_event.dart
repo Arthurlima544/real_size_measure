@@ -40,3 +40,12 @@ class ClearLastPoint extends RealSizeMeasureEvent {}
 
 /// This event is used to clear all points.
 class ClearAllPoints extends RealSizeMeasureEvent {}
+
+/// This event is used to change the limit of points that can be created.
+class ChangePointLimit extends RealSizeMeasureEvent {
+  final int limit;
+  const ChangePointLimit(this.limit);
+
+  @override
+  List<Object> get props => [limit];
+}

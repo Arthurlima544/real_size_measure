@@ -6,9 +6,6 @@ import 'package:real_size_measure/helper/widgets/real_size_measure_widget.dart';
 final realSizeMeasureBloc = RealSizeMeasureBloc();
 
 class Measure extends StatelessWidget {
-  /// Represents the limit of points that can be created.
-  final int limitOfPointsCreated;
-
   /// Represents the size of the points.
   final Size pointSize;
 
@@ -17,7 +14,6 @@ class Measure extends StatelessWidget {
 
   const Measure({
     super.key,
-    required this.limitOfPointsCreated,
     this.pointSize = const Size(20, 20),
     this.distanceColor = Colors.black,
   });
@@ -46,6 +42,11 @@ class Measure extends StatelessWidget {
   /// Clear all points.
   clearAllPoints() {
     realSizeMeasureBloc.add(ClearAllPoints());
+  }
+
+  /// Change the limit of points that can be created.
+  changePointLimit(int limit) {
+    realSizeMeasureBloc.add(ChangePointLimit(limit));
   }
 
   @override
