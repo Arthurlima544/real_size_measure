@@ -10,7 +10,11 @@ sealed class RealSizeMeasureEvent extends Equatable {
 /// This event is used to add a new point to the list of points.
 class AddNewPoint extends RealSizeMeasureEvent {
   final CustomPoint point;
-  const AddNewPoint({required this.point});
+  final int pointLimit;
+  const AddNewPoint({
+    required this.point,
+    required this.pointLimit,
+  });
 
   @override
   List<Object> get props => [point];
@@ -40,12 +44,3 @@ class ClearLastPoint extends RealSizeMeasureEvent {}
 
 /// This event is used to clear all points.
 class ClearAllPoints extends RealSizeMeasureEvent {}
-
-/// This event is used to change the limit of points that can be created.
-class ChangePointLimit extends RealSizeMeasureEvent {
-  final int limit;
-  const ChangePointLimit(this.limit);
-
-  @override
-  List<Object> get props => [limit];
-}

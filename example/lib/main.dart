@@ -7,12 +7,12 @@ void main(List<String> args) {
 }
 
 class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
   final Measure measureWidget = const Measure(
     pointSize: Size(20, 20),
     distanceColor: Colors.blue,
   );
-
-  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,7 @@ class MainApp extends StatelessWidget {
                       MediaQuery.of(context).size.height / 2,
                     ),
                   ),
+                  pointLimit: 4,
                 );
               },
               child: const Icon(Icons.add),

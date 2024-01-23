@@ -19,9 +19,10 @@ class Measure extends StatelessWidget {
   });
 
   /// Add a new point to the screen callback.
-  addNewPoint(CustomPoint point) {
-    realSizeMeasureBloc
-        .add(AddNewPoint(point: CustomPoint(pointOffset: point.pointOffset)));
+  addNewPoint(CustomPoint point, {int pointLimit = 2}) {
+    realSizeMeasureBloc.add(AddNewPoint(
+        point: CustomPoint(pointOffset: point.pointOffset),
+        pointLimit: pointLimit));
   }
 
   /// Save Session of a measure round.
@@ -42,11 +43,6 @@ class Measure extends StatelessWidget {
   /// Clear all points.
   clearAllPoints() {
     realSizeMeasureBloc.add(ClearAllPoints());
-  }
-
-  /// Change the limit of points that can be created.
-  changePointLimit(int limit) {
-    realSizeMeasureBloc.add(ChangePointLimit(limit));
   }
 
   @override
