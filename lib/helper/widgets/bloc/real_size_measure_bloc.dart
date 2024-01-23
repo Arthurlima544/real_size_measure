@@ -11,7 +11,7 @@ part 'real_size_measure_state.dart';
 class RealSizeMeasureBloc
     extends Bloc<RealSizeMeasureEvent, RealSizeMeasureState> {
   final int limitOfPointsCreated;
-  RealSizeMeasureBloc({required this.limitOfPointsCreated})
+  RealSizeMeasureBloc({this.limitOfPointsCreated = 4})
       : super(const RealSizeMeasureState()) {
     on<AddNewPoint>((event, emit) {
       int? newPointId;

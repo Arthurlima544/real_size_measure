@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:real_size_measure/real_size_measure.dart';
 
 void main(List<String> args) {
-  runApp(MainApp());
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  final Measure measureWidget = Measure(
-    limitOfPointsCreated: 8,
-    pointSize: const Size(20, 20),
+  final Measure measureWidget = const Measure(
+    limitOfPointsCreated: 4,
+    pointSize: Size(20, 20),
     distanceColor: Colors.blue,
   );
 
-  MainApp({super.key});
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
