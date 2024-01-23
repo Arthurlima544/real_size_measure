@@ -51,6 +51,18 @@ class MainApp extends StatelessWidget {
               },
               child: const Icon(Icons.add),
             ),
+            FloatingActionButton(
+              onPressed: () {
+                measureWidget.clearLastPoint();
+              },
+              child: const Icon(Icons.undo),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                measureWidget.clearAllPoints();
+              },
+              child: const Icon(Icons.clear),
+            ),
           ],
         ),
       ),

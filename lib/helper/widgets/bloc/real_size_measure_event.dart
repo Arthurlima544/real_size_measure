@@ -34,3 +34,9 @@ class SavePointSession extends RealSizeMeasureEvent {
 
 /// This event is used to clear the session of points.
 class ClearOldSession extends RealSizeMeasureEvent {}
+
+/// This event is used to clear the last point.
+class ClearLastPoint extends RealSizeMeasureEvent {}
+
+/// This event is used to clear all points.
+class ClearAllPoints extends RealSizeMeasureEvent {}

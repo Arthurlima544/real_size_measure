@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:real_size_measure/helper/others/methods.dart';
 import 'package:real_size_measure/helper/classes/point.dart';

@@ -86,5 +86,19 @@ class RealSizeMeasureBloc
     on<ClearOldSession>((event, emit) {
       emit(state.copyWith(session: [], points: []));
     });
+
+    on<ClearLastPoint>((event, emit) {
+      if (state.points.isNotEmpty) {
+        emit(state.copyWith(
+          points: [
+            ...state.points
+                .where((element) => element.id != state.points.last.id)
+          ],
+        ));
+      }
+    });
+    on<ClearAllPoints>((event, emit) {
+      emit(state.copyWith(points: []));
+    });
   }
 }

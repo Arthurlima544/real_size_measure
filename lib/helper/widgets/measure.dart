@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:real_size_measure/helper/classes/point.dart';
 import 'package:real_size_measure/helper/widgets/bloc/real_size_measure_bloc.dart';
 import 'package:real_size_measure/helper/widgets/real_size_measure_widget.dart';
@@ -38,6 +36,16 @@ class Measure extends StatelessWidget {
   /// Clear old session of a measure round.
   clearOldSession() {
     realSizeMeasureBloc.add(ClearOldSession());
+  }
+
+  /// Clear all points.
+  clearLastPoint() {
+    realSizeMeasureBloc.add(ClearLastPoint());
+  }
+
+  /// Clear all points.
+  clearAllPoints() {
+    realSizeMeasureBloc.add(ClearAllPoints());
   }
 
   @override
