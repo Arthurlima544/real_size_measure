@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:real_size_measure/real_size_measure.dart';
 
 void main(List<String> args) {
@@ -19,7 +20,10 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: measureWidget,
+        body: BlocProvider(
+          create: (context) => realSizeMeasureBloc,
+          child: measureWidget,
+        ),
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
