@@ -30,12 +30,6 @@ class _PointsAndStraightState extends State<PointsAndStraight> {
   Widget build(BuildContext context) {
     return BlocBuilder<RealSizeMeasureBloc, RealSizeMeasureState>(
       builder: (context, state) {
-        final angle = calculateAngle(
-          widget.point1.pointOffset,
-          widget.point2.pointOffset,
-        );
-        final topAditional = angle.isNegative && angle < 0 ? -10 : 0;
-        final leftAdtional = angle.isNegative && angle < 0 ? 10 : 0;
         return Stack(
           children: [
             PointWidget(
@@ -55,7 +49,10 @@ class _PointsAndStraightState extends State<PointsAndStraight> {
               left:
                   widget.point1.pointOffset.dx + widget.pointSize.width / 2 + 5,
               child: Transform(
-                transform: Matrix4.rotationZ(angle),
+                transform: Matrix4.rotationZ(calculateAngle(
+                  widget.point1.pointOffset,
+                  widget.point2.pointOffset,
+                )),
                 alignment: Alignment.centerLeft,
                 child: Column(
                   children: [
@@ -69,7 +66,8 @@ class _PointsAndStraightState extends State<PointsAndStraight> {
                       "${convertToMilimeters(distanceBetweenPoints(widget.point1.pointOffset, widget.point2.pointOffset), MediaQuery.of(context).size.height, MediaQuery.of(context).size.width).toStringAsFixed(1)} mm",
                       style: TextStyle(
                         color: widget.color,
-                        fontSize: 10,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],

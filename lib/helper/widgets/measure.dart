@@ -17,8 +17,9 @@ class Measure extends StatelessWidget {
   /// Add a new point to the screen callback.
   addNewPoint(CustomPoint point, {int pointLimit = 2}) {
     realSizeMeasureBloc.add(AddNewPoint(
-        point: CustomPoint(pointOffset: point.pointOffset),
-        pointLimit: pointLimit));
+      point: CustomPoint(pointOffset: point.pointOffset),
+      pointLimit: pointLimit,
+    ));
   }
 
   /// Save Session of a measure round.
