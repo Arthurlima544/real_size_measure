@@ -11,11 +11,9 @@ import 'package:real_size_measure/helper/widgets/points_and_straight.dart';
 /// Return a Stack with the points and lines created by the user.
 class RealSizeMeasureWidget extends StatefulWidget {
   final Size pointSize;
-  final Color distanceColor;
   const RealSizeMeasureWidget({
     super.key,
     required this.pointSize,
-    required this.distanceColor,
   });
 
   @override
@@ -49,7 +47,6 @@ class _RealSizeMeasureWidgetState extends State<RealSizeMeasureWidget> {
             point2: points[i + 1],
             color: colors[i],
             pointSize: widget.pointSize,
-            distanceColor: widget.distanceColor,
           ),
         );
       } else {

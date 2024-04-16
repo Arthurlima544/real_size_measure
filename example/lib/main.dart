@@ -11,7 +11,6 @@ class MainApp extends StatelessWidget {
 
   final Measure measureWidget = const Measure(
     pointSize: Size(20, 20),
-    distanceColor: Colors.blue,
   );
 
   @override

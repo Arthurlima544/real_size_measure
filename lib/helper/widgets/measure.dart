@@ -9,13 +9,9 @@ class Measure extends StatelessWidget {
   /// Represents the size of the points.
   final Size pointSize;
 
-  /// Represents the color of the line that connects the points.
-  final Color distanceColor;
-
   const Measure({
     super.key,
     this.pointSize = const Size(20, 20),
-    this.distanceColor = Colors.black,
   });
 
   /// Add a new point to the screen callback.
@@ -49,7 +45,6 @@ class Measure extends StatelessWidget {
   Widget build(BuildContext context) {
     return RealSizeMeasureWidget(
       pointSize: pointSize,
-      distanceColor: distanceColor,
     );
   }
 }

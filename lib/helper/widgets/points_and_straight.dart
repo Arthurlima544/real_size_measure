@@ -12,7 +12,6 @@ class PointsAndStraight extends StatefulWidget {
   final CustomPoint point2;
   final Color color;
   final Size pointSize;
-  final Color distanceColor;
 
   const PointsAndStraight({
     super.key,
@@ -20,7 +19,6 @@ class PointsAndStraight extends StatefulWidget {
     required this.point2,
     required this.color,
     required this.pointSize,
-    required this.distanceColor,
   });
 
   @override
@@ -70,7 +68,7 @@ class _PointsAndStraightState extends State<PointsAndStraight> {
                     Text(
                       "${convertToMilimeters(distanceBetweenPoints(widget.point1.pointOffset, widget.point2.pointOffset), MediaQuery.of(context).size.height, MediaQuery.of(context).size.width).toStringAsFixed(1)} mm",
                       style: TextStyle(
-                        color: widget.distanceColor,
+                        color: widget.color,
                         fontSize: 10,
                       ),
                     ),
