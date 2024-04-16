@@ -30,6 +30,13 @@ class _PointsAndStraightState extends State<PointsAndStraight> {
   Widget build(BuildContext context) {
     return BlocBuilder<RealSizeMeasureBloc, RealSizeMeasureState>(
       builder: (context, state) {
+        final distance = distanceBetweenPoints(
+            widget.point1.pointOffset, widget.point2.pointOffset);
+        final printedSize = convertToMilimeters(
+          distance,
+          MediaQuery.of(context).size.height,
+          MediaQuery.of(context).size.width,
+        ).toStringAsFixed(1);
         return Stack(
           children: [
             PointWidget(
@@ -62,14 +69,16 @@ class _PointsAndStraightState extends State<PointsAndStraight> {
                           widget.point1.pointOffset, widget.point2.pointOffset),
                       color: widget.color,
                     ),
-                    Text(
-                      "${convertToMilimeters(distanceBetweenPoints(widget.point1.pointOffset, widget.point2.pointOffset), MediaQuery.of(context).size.height, MediaQuery.of(context).size.width).toStringAsFixed(1)} mm",
-                      style: TextStyle(
-                        color: widget.color,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    distance == 0.0
+                        ? Container()
+                        : Text(
+                            "$printedSize mm",
+                            style: TextStyle(
+                              color: widget.color,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                   ],
                 ),
               ),
