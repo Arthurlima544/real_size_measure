@@ -1,39 +1,120 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Real Size Measure
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+Uma biblioteca de widgets para Flutter projetada para medir distâncias reais (em milímetros) diretamente em imagens de radiografias periapicais na odontologia.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+**Nota:** Esta biblioteca não foi publicada no [pub.dev](https://pub.dev) e deve ser instalada diretamente do GitHub.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+##  Recursos
 
-## Features
+-   **Medição Calibrada:** Use uma medida de referência na imagem para calcular o tamanho real de outros objetos em milímetros.
+-   **Interface de Toque:** Adicione pontos de medição de forma intuitiva com gestos de toque.
+-   **Feedback Visual:** As linhas e os pontos de medição são desenhados diretamente sobre a imagem.
+-   **Limpeza Fácil:** Funções para limpar os pontos atuais ou reiniciar a sessão de medição.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
 
-## Getting started
+##  Instalação
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Como o pacote não está no pub.dev, adicione-o ao seu arquivo `pubspec.yaml` referenciando o repositório do GitHub:
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  real_size_measure:
+    git:
+      url: https://github.com/Arthurlima544/real_size_measure.git
+      # Você pode travar em um commit ou branch específico usando 'ref'
+      # ref: main
 ```
 
-## Additional information
+Após adicionar as dependências basta executar:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```Bash
+flutter pub get
+```
+
+## Uso
+
+O exemplo abaixo demonstra como configurar o widget Measure e interagir com ele através de botões para adicionar, salvar e remover pontos de medição.
+
+Primeiro, envolva o widget Measure com um BlocProvider para gerenciar seu estado. Em seguida, use os métodos expostos pelo widget para controlar as medições.
+
+```Dart
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:real_size_measure/real_size_measure.dart';
+
+void main(List<String> args) {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  // Instância do widget principal de medição
+  final Measure measureWidget = const Measure(
+    pointSize: Size(20, 20),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: BlocProvider(
+          create: (context) => realSizeMeasureBloc,
+          child: measureWidget,
+        ),
+        // Botões para controlar as ações de medição
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            // Salva os pontos atuais
+            FloatingActionButton(
+              onPressed: () {
+                measureWidget.savePoints(
+                  Offset(
+                    MediaQuery.of(context).size.width,
+                    MediaQuery.of(context).size.height,
+                  ),
+                );
+              },
+              child: const Icon(Icons.save),
+            ),
+            // Adiciona um novo ponto no centro da tela
+            FloatingActionButton(
+              onPressed: () {
+                measureWidget.addNewPoint(
+                  CustomPoint(
+                    pointOffset: Offset(
+                      MediaQuery.of(context).size.width / 2,
+                      MediaQuery.of(context).size.height / 2,
+                    ),
+                  ),
+                  pointLimit: 4,
+                );
+              },
+              child: const Icon(Icons.add),
+            ),
+            // Remove o último ponto adicionado (desfazer)
+            FloatingActionButton(
+              onPressed: () {
+                measureWidget.clearLastPoint();
+              },
+              child: const Icon(Icons.undo),
+            ),
+            // Limpa todos os pontos da tela
+            FloatingActionButton(
+              onPressed: () {
+                measureWidget.clearAllPoints();
+              },
+              child: const Icon(Icons.clear),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
